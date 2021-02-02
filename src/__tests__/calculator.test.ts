@@ -1,3 +1,6 @@
+// 2.5 Challenge 1: Unit Test with a Switch and Iteration
+
+import { isExpressionStatement } from "typescript";
 import calculator from "../calculator";
 
 // each of the objects in the dataset array has the pieces of a math problem.
@@ -25,3 +28,24 @@ let dataset = [
 ];
 
 describe("Calculator", () => {});
+  dataset.forEach((computation) => {
+    test(`the ${computation.method} method with ${computation.x} and ${computation.y}`, () => {
+      switch (computation.method) {
+        case "add":
+          expect(calculator.add(computation.x, computation.y)).toEqual(computation.x + computation.y);
+          break;
+        case "subtract":
+          expect(calculator.subtract(computation.x, computation.y)).toEqual(computation.x - computation.y);
+          break;
+        case "divide":
+          expect(calculator.divide(computation.x, computation.y)).toEqual(computation.x / computation.y);
+          break;
+        case "multiply":
+            expect(calculator.multiply(computation.x, computation.y)).toEqual(computation.x * computation.y);
+            break;
+          default:
+            console.log("No matching compuation type");
+      }
+    });
+  });
+
